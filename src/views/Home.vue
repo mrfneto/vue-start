@@ -19,6 +19,7 @@ const { user } = useStore()
     </div>
 
     <div class="mt-8 flex items-center space-x-4">
+      <button class="btn btn-link">Link</button>
       <button class="btn">Base</button>
       <button class="btn btn-primary">Primary</button>
       <button class="btn btn-secondary">Secondary</button>
