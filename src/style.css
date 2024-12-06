@@ -16,7 +16,7 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-bold tracking-tight;
+  @apply font-semibold -tracking-wide;
 }
 
 h1 {
@@ -42,7 +42,7 @@ p {
 }
 
 .navbar {
-  @apply fixed top-0 inset-x-0 shadow-xl bg-opacity-75 z-10;
+  @apply fixed top-0 inset-x-0 shadow-xl bg-white bg-opacity-75 z-10;
 }
 
 .navbar-nav {
@@ -72,7 +72,7 @@ p {
 }
 .navbar-link.router-link-exact-active,
 .navbar-link.router-link-active {
-  @apply;
+  @apply bg-gray-200;
 }
 
 /* BUTTONS */
