@@ -37,9 +37,12 @@ const isOpen = ref(false)
         <RouterLink class="btn btn-navlink" to="#">Contact</RouterLink>
         <RouterLink class="btn btn-navlink" to="#">About</RouterLink>
         <div class="flex-1 md:hidden"></div>
-        <RouterLink class="btn btn-secondary btn-navlink w-full" to="#"
-          >Sair</RouterLink
+        <RouterLink
+          class="btn btn-secondary btn-navlink w-full"
+          :to="{ name: 'login' }"
         >
+          Login
+        </RouterLink>
       </div>
 
       <!-- Mobile button -->
