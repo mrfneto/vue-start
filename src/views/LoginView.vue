@@ -1,8 +1,12 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+//
 import Icon from '@/components/Icon.vue'
 import Input from '@/components/Input.vue'
 import Submit from '@/components/Submit.vue'
+
+const router = useRouter()
 
 const form = ref({ email: '', password: '' })
 const loading = ref(false)
@@ -13,11 +17,13 @@ const onSubmit = async () => {
   try {
     setTimeout(() => {
       console.log(form.value)
+      router.replace({ name: 'home' })
+      loading.value = false
     }, 2000)
   } catch (error) {
     console.log(error)
   } finally {
-    loading.value = false
+    // loading.value = false
   }
 }
 </script>
