@@ -7,7 +7,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  document.title = `${to.meta.title} - Vue-Start`
+  document.title = `${to.meta.title} - Farmácia UFRJ`
   next()
 })
 

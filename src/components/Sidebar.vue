@@ -1,7 +1,13 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { onMounted, onUnmounted, watch } from 'vue'
-defineProps({ show: Boolean, permanent: Boolean, user: Object, theme: String })
+defineProps({
+  show: Boolean,
+  permanent: Boolean,
+  user: Object,
+  theme: String,
+  width: { type: String, default: 'w-64' }
+})
 const emit = defineEmits(['close'])
 
 const route = useRoute()
@@ -60,9 +66,10 @@ onUnmounted(() => {
           : permanent
           ? 'opacity-0 -translate-x-full lg:translate-x-0 lg:opacity-100'
           : 'opacity-0 -translate-x-full',
-        theme ? theme : 'bg-white border-gray-200'
+        theme ? theme : 'bg-white border-gray-200',
+        width
       ]"
-      class="fixed inset-0 z-50 flex flex-col w-80 h-screen p-4 overflow-y-auto border-r transition-all duration-300 ease-in-out"
+      class="fixed inset-0 z-50 flex flex-col h-screen p-4 overflow-y-auto border-r transition-all duration-300 ease-in-out"
     >
       <div v-if="$slots.header">
         <slot name="header" />
