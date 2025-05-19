@@ -1,15 +1,18 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 //
 import Sidebar from '@/components/Sidebar.vue'
 import Navbar from '@/components/Navbar.vue'
 import Icon from '@/components/Icon.vue'
 
 const router = useRouter()
+const route = useRoute()
 
 const sidebarShow = ref(false)
 const title = ref('Previsão de Turma - FF')
+
+const links = [{ label: 'Dashboard', to: 'home', icon: 'LayoutDashboard' }]
 
 const logout = () => {
   router.replace({ name: 'login' })
@@ -19,10 +22,21 @@ const logout = () => {
   <div class="min-h-screen flex">
     <Sidebar permanent :show="sidebarShow" @close="sidebarShow = false">
       <template #header>
-        <span class="heading-md hidden lg:flex">{{ title }}</span>
+        <div class="hidden lg:flex border-b border-gray-200 pb-4">
+          <span class="heading-md">{{ title }}</span>
+        </div>
       </template>
       <template #content>
-        <h2 class="heading-lg">Sidebar</h2>
+        <RouterLink
+          v-for="({ label, to, icon }, index) in links"
+          :key="index"
+          :to="{ name: to }"
+          class="btn btn-menu w-full"
+          :class="route.name === to ? 'active' : ''"
+        >
+          <Icon :name="icon" class="size-4 mr-2" />
+          <span>{{ label }}</span>
+        </RouterLink>
       </template>
       <template #footer>
         <div class="border-t border-gray-200 pt-2">
