@@ -1,29 +1,34 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { login, verifyErrorCode } from '@/services/auth'
+import { useToast } from '@/composables/useToast'
 //
 import Icon from '@/components/Icon.vue'
 import Input from '@/components/Input.vue'
 import Submit from '@/components/Submit.vue'
 
+const toast = useToast()
+
 const router = useRouter()
 
 const form = ref({ email: '', password: '' })
 const loading = ref(false)
-const errors = ref(null)
+const message = ref(null)
 
 const onSubmit = async () => {
   loading.value = true
+  message.value = null
   try {
-    setTimeout(() => {
-      console.log(form.value)
-      router.replace({ name: 'home' })
-      loading.value = false
-    }, 2000)
+    const { email, password } = form.value
+    await login(email, password)
+    router.replace({ name: 'home' })
   } catch (error) {
     console.log(error)
+    toast.error('Error', verifyErrorCode(error))
+    message.value = 'E-mail ou senha inválida'
   } finally {
-    // loading.value = false
+    loading.value = false
   }
 }
 </script>
@@ -48,6 +53,7 @@ const onSubmit = async () => {
           autofocus
           autocomplete="off"
           label="E-mail"
+          :error="message"
         />
         <Input
           id="password"

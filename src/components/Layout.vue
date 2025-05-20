@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
+
+import { logout } from '@/services/auth'
 //
 import Sidebar from '@/components/Sidebar.vue'
 import Navbar from '@/components/Navbar.vue'
@@ -14,7 +16,8 @@ const title = ref('Previsão de Turma - FF')
 
 const links = [{ label: 'Dashboard', to: 'home', icon: 'LayoutDashboard' }]
 
-const logout = () => {
+const doLogout = async () => {
+  await logout()
   router.replace({ name: 'login' })
 }
 </script>
@@ -40,7 +43,7 @@ const logout = () => {
       </template>
       <template #footer>
         <div class="border-t border-gray-200 pt-2">
-          <button @click="logout" class="btn btn-secondary btn-menu w-full">
+          <button @click="doLogout" class="btn btn-secondary btn-menu w-full">
             <Icon name="LogOut" class="size-4 mr-2" />
             <span>Sair</span>
           </button>

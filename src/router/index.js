@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useStore } from '@/stores'
+
 import routes from './routes'
 
 const router = createRouter({
@@ -8,7 +10,15 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   document.title = `${to.meta.title} - Farmácia UFRJ`
-  next()
+
+  const store = useStore()
+
+  const user = await store.init()
+  console.log(user)
+
+  if (to.meta.requiresAuth && !user) next({ name: 'login' })
+  else if (to.meta.requiresGuest && user) next({ name: 'home' })
+  else next()
 })
 
 export default router

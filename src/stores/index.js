@@ -1,8 +1,22 @@
-import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { defineStore } from 'pinia'
+import { watchAuthStage } from '@/services/auth'
 
 export const useStore = defineStore('main', () => {
-  const user = ref({ name: 'Mrfneto' })
+  const user = ref()
+  const loading = ref(true)
 
-  return { user }
+  const init = () => {
+    return new Promise((resolve, reject) => {
+      watchAuthStage(
+        u => {
+          user.value = u
+          loading.value = false
+          resolve(u)
+        },
+        e => reject(e)
+      )
+    })
+  }
+  return { user, loading, init }
 })
