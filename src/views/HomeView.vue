@@ -2,7 +2,7 @@
 import Layout from '@/components/Layout.vue'
 </script>
 <template>
-  <Layout title="Home">
+  <Layout>
     <h1 class="heading-xl">Home page</h1>
     <p class="mt-4">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos cum

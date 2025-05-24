@@ -14,7 +14,10 @@ const route = useRoute()
 const sidebarShow = ref(false)
 const title = ref('Previsão de Turma - FF')
 
-const links = [{ label: 'Dashboard', to: 'home', icon: 'LayoutDashboard' }]
+const links = [
+  { label: 'Dashboard', to: 'home', icon: 'LayoutDashboard' },
+  { label: 'Departamentos', to: 'departments', icon: 'Building' }
+]
 
 const doLogout = async () => {
   await logout()

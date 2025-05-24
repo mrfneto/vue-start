@@ -3,11 +3,18 @@ import { auth } from './firebase'
 import {
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail
 } from 'firebase/auth'
+
+export const register = (email, password) =>
+  createUserWithEmailAndPassword(auth, email, password)
 
 export const login = (email, password) =>
   signInWithEmailAndPassword(auth, email, password)
+
+export const recover = email => sendPasswordResetEmail(auth, email)
 
 export const logout = () => signOut(auth)
 

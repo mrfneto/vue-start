@@ -10,5 +10,23 @@ export default [
     name: 'login',
     component: () => import('@/views/LoginView.vue'),
     meta: { title: 'Login', requiresGuest: true }
+  },
+  {
+    path: '/departamentos',
+    name: 'departments',
+    component: () => import('@/views/DepartmentListView.vue'),
+    meta: { title: 'Departamentos', requiresAuth: true }
+  },
+  {
+    path: '/departamento',
+    name: 'department-create',
+    component: () => import('@/views/DepartmentFormView.vue'),
+    meta: { title: 'Departamentos', requiresAuth: true }
+  },
+  {
+    path: '/departamento/:id',
+    name: 'department-update',
+    component: () => import('@/views/DepartmentFormView.vue'),
+    meta: { title: 'Departamentos', requiresAuth: true }
   }
 ]

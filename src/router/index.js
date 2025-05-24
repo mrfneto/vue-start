@@ -14,7 +14,6 @@ router.beforeEach(async (to, from, next) => {
   const store = useStore()
 
   const user = await store.init()
-  console.log(user)
 
   if (to.meta.requiresAuth && !user) next({ name: 'login' })
   else if (to.meta.requiresGuest && user) next({ name: 'home' })

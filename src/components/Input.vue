@@ -9,18 +9,6 @@ const props = defineProps({
   error: String,
   required: Boolean
 })
-
-const focus = () => {
-  $refs.input.focus()
-}
-
-const select = () => {
-  $refs.input.select()
-}
-
-const setSelectionRange = () => {
-  $refs.input.setSelectionRange(start, end)
-}
 </script>
 <template>
   <div class="form-group" :class="$attrs.class">
